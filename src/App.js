@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState, createContext } from "react";
+import "./App.css";
+import DoneList from "./DoneList";
+
+const todoList = {
+  pending: "Work on react hooks",
+  done: "Finishing 10 js videos",
+};
+export const TodoListContext = createContext(todoList);
 
 function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    // setCount(count + 1);
+  }, [count]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TodoListContext.Provider value={todoList.pending}>
+      <div className="App">
+        <h1> hey there, i am count {count}</h1>
+        <button onClick={() => setCount(count + 1)}>
+          <h1>click to increment</h1>
+        </button>
+        <DoneList />
+      </div>
+    </TodoListContext.Provider>
   );
 }
 

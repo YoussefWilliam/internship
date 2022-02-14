@@ -11,12 +11,8 @@ export const TodoListContext = createContext(todoList);
 function App() {
   const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    // setCount(count + 1);
-  }, [count]);
-
   return (
-    <TodoListContext.Provider value={todoList.pending}>
+    <TodoListContext.Provider value={todoList}>
       <div className="App">
         <h1> hey there, i am count {count}</h1>
         <button onClick={() => setCount(count + 1)}>
